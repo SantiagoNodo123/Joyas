@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +12,13 @@
             theme: {
                 extend: {
                     colors: {
-                        obsidian: '#0a0a0a',
+                        obsidian: '#050505',
+                        obsidianLight: '#111111',
                         pearl: '#f8f9fa',
-                        gold: '#d4af37'
+                        gold: '#d4af37',
+                        goldDark: '#b5952f',
+                        silver: '#e8e8e8',
+                        silverDark: '#c0c0c0'
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
@@ -26,165 +30,373 @@
     </script>
     <style>
         body {
-            background-color: #0a0a0a;
+            background-color: #050505;
             color: #f8f9fa;
+            overflow-x: hidden;
         }
         
-        /* Shimmer Effect para botones */
-        .shimmer-btn {
+        .text-gradient-gold {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-silver {
+            background: linear-gradient(to right, #70706F, #D2D2D2, #FFFFFF, #D2D2D2, #70706F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .shimmer-btn-gold {
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            background: linear-gradient(45deg, #d4af37, #fcf6ba, #d4af37);
+            background-size: 200% auto;
+            color: #050505;
+            border: none;
         }
         
-        .shimmer-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            transition: all 0.7s ease;
-        }
-        
-        .shimmer-btn:hover::before {
-            animation: shimmer 1.5s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 200%; }
+        .shimmer-btn-gold:hover {
+            background-position: right center;
+            color: #000;
         }
 
-        /* Hover Zoom Lento para imágenes de catálogo */
-        .img-hover-zoom {
+        .shimmer-btn-silver {
+            position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0);
+            background-size: 200% auto;
+            color: #050505;
+            border: none;
         }
         
-        .img-hover-zoom img {
-            transition: transform 0.5s ease;
+        .shimmer-btn-silver:hover {
+            background-position: right center;
+            color: #000;
+        }
+
+        .img-hover-zoom { overflow: hidden; border-radius: 2px; }
+        .img-hover-zoom img { transition: transform 0.7s ease; }
+        .img-hover-zoom:hover img { transform: scale(1.08); }
+
+        /* Modal Overlay */
+        #payment-modal {
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
         }
         
-        .img-hover-zoom:hover img {
-            transform: scale(1.05);
+        .loader {
+            border: 3px solid #111;
+            border-top: 3px solid #d4af37;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
         }
+        
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased font-sans">
 
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="font-serif text-2xl tracking-widest text-gradient-gold font-bold">L'ORÉAL JOUAILLERIE</div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
+                <a href="#anillos" class="hover:text-gold transition-colors">Anillos</a>
+                <a href="#relojes" class="hover:text-silver transition-colors">Relojes</a>
+                <a href="#plata" class="hover:text-silver transition-colors">Colección Plata</a>
+            </div>
+            <div>
+                <button class="text-gold hover:text-pearl transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
     <!-- 1. Hero Section -->
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1599643478524-fb66f70d00de?q=80&w=2000&auto=format&fit=crop" alt="Alta Joyería Hero" class="w-full h-full object-cover opacity-40">
+            <!-- Imagen Nicho Joyas -->
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2000&auto=format&fit=crop" alt="Alta Joyería Hero" class="w-full h-full object-cover opacity-50">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-obsidian"></div>
         </div>
-        <div class="z-10 text-center px-4" data-aos="fade-down">
-            <h1 class="font-serif text-5xl md:text-7xl font-bold mb-4 tracking-wide text-pearl">Elegancia Atemporal</h1>
-            <p class="text-lg md:text-xl font-light mb-10 tracking-widest uppercase text-gray-300">La máxima expresión del lujo</p>
-            <a href="#coleccion" class="shimmer-btn inline-block bg-gold text-obsidian px-10 py-4 uppercase tracking-widest text-sm font-bold border border-gold hover:bg-transparent hover:text-gold transition-colors duration-300">
-                Descubrir Colección
+        <div class="z-10 text-center px-4" data-aos="zoom-out" data-aos-duration="2000">
+            <h1 class="font-serif text-5xl md:text-8xl font-bold mb-6 tracking-wide text-gradient-gold">Lujo Inmortal</h1>
+            <p class="text-lg md:text-xl font-light mb-12 tracking-widest uppercase text-silver">Forjando la eternidad en oro y plata</p>
+            <a href="#anillos" class="shimmer-btn-gold px-12 py-4 uppercase tracking-widest text-sm font-bold shadow-lg shadow-gold/20 inline-block">
+                Explorar Obras Maestras
             </a>
         </div>
     </header>
 
-    <!-- 2. Colección Exclusiva (Catálogo) -->
-    <section id="coleccion" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="font-serif text-4xl mb-3 text-gold">Colección Exclusiva</h2>
-            <div class="w-16 h-0.5 bg-gold mx-auto"></div>
+    <!-- 2. Sección: Anillos de Compromiso (Oro) -->
+    <section id="anillos" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+            <span class="text-gold uppercase tracking-widest text-sm mb-2">Edición Limitada</span>
+            <h2 class="font-serif text-4xl md:text-5xl mb-4 text-pearl">Anillos de Compromiso</h2>
+            <div class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent"></div>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
-                <div class="img-hover-zoom mb-6">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f66126e28?q=80&w=600&auto=format&fit=crop" alt="Anillo Diamante Corte Princesa" class="w-full h-80 object-cover">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Productos -->
+            <div class="group" data-aos="fade-up" data-aos-delay="100">
+                <div class="img-hover-zoom mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f66126e28?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
+                    <button onclick="openPaymentModal('Anillo Diamante Princesa', 12500)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
                 </div>
-                <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition-colors">Anillo Diamante Corte Princesa</h3>
-                <p class="text-gray-400 font-light mb-4">$12,500 USD</p>
-                <button class="text-xs uppercase tracking-widest text-gold border-b border-transparent group-hover:border-gold pb-1 transition-all">Añadir a la bolsa</button>
+                <h3 class="font-serif text-xl mb-1 text-gold">Diamante Corte Princesa</h3>
+                <p class="text-silverDark font-light text-sm mb-2">Oro de 18 Quilates</p>
+                <p class="text-pearl tracking-wider">$12,500</p>
             </div>
             
-            <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
-                <div class="img-hover-zoom mb-6">
-                    <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=600&auto=format&fit=crop" alt="Gargantilla Oro 18k" class="w-full h-80 object-cover">
+            <div class="group" data-aos="fade-up" data-aos-delay="200">
+                <div class="img-hover-zoom mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
+                    <button onclick="openPaymentModal('Anillo Solitario Imperial', 18200)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
                 </div>
-                <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition-colors">Gargantilla Oro 18k</h3>
-                <p class="text-gray-400 font-light mb-4">$8,200 USD</p>
-                <button class="text-xs uppercase tracking-widest text-gold border-b border-transparent group-hover:border-gold pb-1 transition-all">Añadir a la bolsa</button>
+                <h3 class="font-serif text-xl mb-1 text-gold">Solitario Imperial</h3>
+                <p class="text-silverDark font-light text-sm mb-2">Oro Blanco y Diamantes</p>
+                <p class="text-pearl tracking-wider">$18,200</p>
             </div>
             
-            <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
-                <div class="img-hover-zoom mb-6">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=600&auto=format&fit=crop" alt="Pendientes Esmeralda" class="w-full h-80 object-cover">
+            <div class="group" data-aos="fade-up" data-aos-delay="300">
+                <div class="img-hover-zoom mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
+                    <button onclick="openPaymentModal('Anillo Halo de Esmeralda', 9400)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
                 </div>
-                <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition-colors">Pendientes Esmeralda</h3>
-                <p class="text-gray-400 font-light mb-4">$5,400 USD</p>
-                <button class="text-xs uppercase tracking-widest text-gold border-b border-transparent group-hover:border-gold pb-1 transition-all">Añadir a la bolsa</button>
+                <h3 class="font-serif text-xl mb-1 text-gold">Halo de Esmeralda</h3>
+                <p class="text-silverDark font-light text-sm mb-2">Oro Amarillo 24k</p>
+                <p class="text-pearl tracking-wider">$9,400</p>
             </div>
             
-            <div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="400">
-                <div class="img-hover-zoom mb-6">
-                    <img src="https://images.unsplash.com/photo-1587836374828-cb4387861fa0?q=80&w=600&auto=format&fit=crop" alt="Reloj Tourbillon Platino" class="w-full h-80 object-cover">
+            <div class="group" data-aos="fade-up" data-aos-delay="400">
+                <div class="img-hover-zoom mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
+                    <button onclick="openPaymentModal('Anillo Rubí Eternidad', 15000)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
                 </div>
-                <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition-colors">Reloj Tourbillon Platino</h3>
-                <p class="text-gray-400 font-light mb-4">$45,000 USD</p>
-                <button class="text-xs uppercase tracking-widest text-gold border-b border-transparent group-hover:border-gold pb-1 transition-all">Añadir a la bolsa</button>
+                <h3 class="font-serif text-xl mb-1 text-gold">Rubí Eternidad</h3>
+                <p class="text-silverDark font-light text-sm mb-2">Oro Rosado y Rubíes</p>
+                <p class="text-pearl tracking-wider">$15,000</p>
             </div>
         </div>
     </section>
 
-    <!-- 3. Experiencia de Compra (Checkout Mockup) -->
-    <section class="bg-neutral-900 py-20 border-y border-neutral-800">
-        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
-            <svg class="w-12 h-12 text-gold mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-            <h2 class="font-serif text-3xl mb-4 text-pearl">Adquisición Segura y Envíos Asegurados a Nivel Global</h2>
-            <p class="text-gray-400 font-light mb-10 max-w-2xl mx-auto">Cada pieza incluye un certificado de autenticidad y garantía de por vida. Procesamos su inversión con los más altos estándares de encriptación.</p>
-            <div class="flex justify-center items-center space-x-8 opacity-70">
-                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.64-2.25 1.64-1.74 0-2.26-.87-2.32-1.81H7.84c.05 1.81 1.25 2.94 3.06 3.32V19h2.32v-1.66c1.64-.34 2.86-1.4 2.86-3.04 0-2.44-1.96-3.13-3.77-3.56z"/></svg>
+    <!-- 3. Sección: Colección Plata y Platino -->
+    <section id="plata" class="bg-obsidianLight py-24 border-y border-neutral-900">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+                <span class="text-silver uppercase tracking-widest text-sm mb-2">Pureza Absoluta</span>
+                <h2 class="font-serif text-4xl md:text-5xl mb-4 text-gradient-silver">Colección Plata y Platino</h2>
+                <div class="w-24 h-px bg-gradient-to-r from-transparent via-silver to-transparent"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Productos Plata -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="img-hover-zoom mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=600&auto=format&fit=crop" class="w-full h-[28rem] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <button onclick="openPaymentModal('Gargantilla de Platino', 6800)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-silver px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Adquirir</button>
+                    </div>
+                    <h3 class="font-serif text-xl mb-1 text-silver">Gargantilla de Platino</h3>
+                    <p class="text-pearl tracking-wider">$6,800</p>
+                </div>
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="img-hover-zoom mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1620656798579-1984d9e87df6?q=80&w=600&auto=format&fit=crop" class="w-full h-[28rem] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <button onclick="openPaymentModal('Brazalete Plata Ley 925', 3200)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-silver px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Adquirir</button>
+                    </div>
+                    <h3 class="font-serif text-xl mb-1 text-silver">Brazalete Plata Ley 925</h3>
+                    <p class="text-pearl tracking-wider">$3,200</p>
+                </div>
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="img-hover-zoom mb-6 relative">
+                        <img src="https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?q=80&w=600&auto=format&fit=crop" class="w-full h-[28rem] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        <button onclick="openPaymentModal('Pendientes Gota de Zafiro', 5100)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-silver px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Adquirir</button>
+                    </div>
+                    <h3 class="font-serif text-xl mb-1 text-silver">Pendientes Gota de Zafiro</h3>
+                    <p class="text-pearl tracking-wider">$5,100</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Concierge Personal (Formulario) -->
-    <section class="py-24 px-6 md:px-12 max-w-3xl mx-auto">
-        <div class="text-center mb-12" data-aos="fade-up">
-            <h2 class="font-serif text-4xl mb-3 text-gold">Concierge Personal</h2>
-            <p class="text-gray-400 font-light">Agende una consulta privada con nuestros expertos joyeros.</p>
+    <!-- 4. Sección: Alta Relojería -->
+    <section id="relojes" class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-gold/5 to-transparent z-0 pointer-events-none"></div>
+        <div class="flex flex-col md:flex-row items-center gap-16 relative z-10">
+            <div class="md:w-1/2" data-aos="fade-right">
+                <span class="text-gold uppercase tracking-widest text-sm mb-4 block">Precisión Suiza</span>
+                <h2 class="font-serif text-4xl md:text-6xl mb-6 text-pearl leading-tight">El Tiempo<br><span class="text-gradient-gold">Hecho Arte</span></h2>
+                <p class="text-silverDark font-light mb-10 text-lg">Descubra nuestra selección de relojería con complicaciones maestras, esferas de meteorito y tourbillons en cajas de oro rosa de 18 quilates.</p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 p-4 border border-gold/20 hover:border-gold/60 transition-colors bg-obsidianLight group">
+                        <img src="https://images.unsplash.com/photo-1587836374828-cb4387861fa0?q=80&w=200&auto=format&fit=crop" class="w-20 h-20 object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-serif text-lg text-pearl group-hover:text-gold transition-colors">Tourbillon Esqueleto</h4>
+                            <p class="text-sm text-silverDark">$85,000</p>
+                        </div>
+                        <button onclick="openPaymentModal('Reloj Tourbillon Esqueleto', 85000)" class="text-gold pr-4 uppercase tracking-wider text-xs font-bold hover:text-pearl">Comprar</button>
+                    </div>
+                    <div class="flex items-center gap-6 p-4 border border-gold/20 hover:border-gold/60 transition-colors bg-obsidianLight group">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=200&auto=format&fit=crop" class="w-20 h-20 object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-serif text-lg text-pearl group-hover:text-gold transition-colors">Cronógrafo Oro Rosa</h4>
+                            <p class="text-sm text-silverDark">$42,000</p>
+                        </div>
+                        <button onclick="openPaymentModal('Reloj Cronógrafo Oro Rosa', 42000)" class="text-gold pr-4 uppercase tracking-wider text-xs font-bold hover:text-pearl">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=800&auto=format&fit=crop" class="w-full h-auto shadow-2xl shadow-gold/10 rounded-sm">
+            </div>
         </div>
-        
-        <form class="space-y-6" data-aos="fade-up" data-aos-delay="200" onsubmit="event.preventDefault(); alert('Asesoría privada solicitada con éxito.');">
-            <div>
-                <input type="text" placeholder="Nombre Completo" class="w-full bg-transparent border-b border-neutral-700 py-3 px-2 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-gray-600" required>
-            </div>
-            <div>
-                <input type="email" placeholder="Correo Electrónico" class="w-full bg-transparent border-b border-neutral-700 py-3 px-2 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-gray-600" required>
-            </div>
-            <div>
-                <input type="text" placeholder="Pieza o Colección de Interés" class="w-full bg-transparent border-b border-neutral-700 py-3 px-2 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-gray-600">
-            </div>
-            <div class="pt-6 text-center">
-                <button type="submit" class="shimmer-btn w-full md:w-auto bg-transparent text-gold px-12 py-4 uppercase tracking-widest text-sm font-bold border border-gold hover:bg-gold hover:text-obsidian transition-colors duration-300">
-                    Solicitar Asesoría Privada
+    </section>
+
+    <!-- Modal de Pasarela de Pago Funcional -->
+    <div id="payment-modal" class="fixed inset-0 z-[100] bg-black/80 hidden flex items-center justify-center p-4">
+        <div class="bg-obsidian border border-gold/30 w-full max-w-md relative overflow-hidden" data-aos="zoom-in" data-aos-duration="400">
+            <!-- Header Modal -->
+            <div class="bg-obsidianLight p-6 border-b border-gold/20 flex justify-between items-center">
+                <h3 class="font-serif text-xl text-gold">Finalizar Compra</h3>
+                <button onclick="closePaymentModal()" class="text-silver hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-        </form>
-    </section>
+            
+            <!-- Contenido Modal -->
+            <div class="p-8" id="payment-content">
+                <div class="mb-6">
+                    <p class="text-sm text-silverDark mb-1">Producto a adquirir:</p>
+                    <p class="font-serif text-lg text-pearl" id="modal-product-name">Anillo Diamante</p>
+                    <p class="text-gold font-bold mt-1" id="modal-product-price">$0</p>
+                </div>
 
-    <!-- 5. WhatsApp CTA -->
-    <a href="#" class="fixed bottom-8 right-8 z-50 bg-obsidian border border-gold p-4 rounded-full shadow-lg shadow-gold/20 hover:scale-110 transition-transform group" aria-label="Contactar por WhatsApp">
-        <svg class="w-7 h-7 text-gold group-hover:text-pearl transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.89-4.443 9.893-9.892.003-5.446-4.443-9.89-9.893-9.89-5.45 0-9.89 4.444-9.89 9.89.001 2.062.616 3.868 1.673 5.443l-1.041 3.811 3.966-1.054zm1.109-1.99l-.023-.008c-1.397-.816-2.906-1.246-4.46-1.246-4.708 0-8.535 3.827-8.537 8.535-.001 1.503.4 2.971 1.157 4.316l-.853 3.122 3.238-.85c1.32.734 2.768 1.121 4.251 1.121 4.706 0 8.534-3.827 8.536-8.535.001-4.708-3.827-8.535-8.536-8.535zm8.563 11.889c-.31.874-1.803 1.69-2.528 1.776-.72.083-1.681.258-5.309-1.248-4.364-1.808-7.185-6.236-7.399-6.523-.213-.286-1.764-2.355-1.764-4.496 0-2.14 1.116-3.197 1.517-3.626.398-.429.866-.537 1.155-.537.286 0 .573.003.828.016.262.012.613-.102.959.733.356.862 1.218 2.978 1.328 3.198.11.22.183.475.04.733-.143.258-.216.418-.429.664-.213.246-.445.541-.634.707-.202.176-.412.37-.183.762.23.393 1.026 1.694 2.202 2.748 1.519 1.36 2.802 1.779 3.195 1.993.393.213.624.175.859-.082.234-.258 1.002-1.168 1.272-1.569.268-.401.536-.334.896-.201.36.133 2.274 1.072 2.664 1.268.39.196.65.293.744.457.094.164.094.954-.216 1.828z"/></svg>
-    </a>
+                <form id="checkout-form" onsubmit="processPayment(event)">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">Titular de la Tarjeta</label>
+                            <input type="text" required class="w-full bg-transparent border border-neutral-700 py-3 px-4 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-neutral-600" placeholder="Nombre completo">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">Número de Tarjeta</label>
+                            <div class="relative">
+                                <input type="text" required pattern="[0-9\s]{13,19}" maxlength="19" class="w-full bg-transparent border border-neutral-700 py-3 px-4 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-neutral-600" placeholder="0000 0000 0000 0000">
+                                <svg class="w-8 h-8 absolute right-3 top-2.5 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-1/2">
+                                <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">Vencimiento</label>
+                                <input type="text" required placeholder="MM/YY" maxlength="5" class="w-full bg-transparent border border-neutral-700 py-3 px-4 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-neutral-600">
+                            </div>
+                            <div class="w-1/2">
+                                <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">CVC</label>
+                                <input type="password" required placeholder="•••" maxlength="4" class="w-full bg-transparent border border-neutral-700 py-3 px-4 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-neutral-600">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-8 w-full shimmer-btn-gold py-4 text-sm uppercase tracking-widest font-bold flex justify-center items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        Pagar de forma Segura
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Estado: Procesando -->
+            <div id="payment-processing" class="p-12 hidden flex-col items-center justify-center text-center h-full min-h-[400px]">
+                <div class="loader mb-6"></div>
+                <h3 class="font-serif text-2xl text-gold mb-2">Autenticando</h3>
+                <p class="text-silverDark font-light text-sm">Conectando con pasarela segura...</p>
+            </div>
+            
+            <!-- Estado: Exitoso -->
+            <div id="payment-success" class="p-12 hidden flex-col items-center justify-center text-center h-full min-h-[400px]">
+                <div class="w-20 h-20 rounded-full bg-gold/10 border border-gold flex items-center justify-center mb-6">
+                    <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3 class="font-serif text-3xl text-pearl mb-3">¡Adquisición Exitosa!</h3>
+                <p class="text-silver font-light mb-8">Su certificado de autenticidad y detalles de envío premium han sido enviados a su correo.</p>
+                <button onclick="closePaymentModal()" class="border border-gold text-gold hover:bg-gold hover:text-obsidian transition-colors px-8 py-3 text-sm uppercase tracking-widest">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- Scripts (AOS) -->
+    <!-- Scripts (AOS y Lógica del Modal) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Inicializar animaciones de scroll
         AOS.init({
             duration: 1200,
-            easing: 'ease-in-out',
+            easing: 'ease-out-cubic',
             once: true,
+            offset: 50
         });
+
+        // Cambiar fondo de navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-obsidian/90', 'backdrop-blur-md', 'shadow-md', 'shadow-gold/5');
+            } else {
+                nav.classList.remove('bg-obsidian/90', 'backdrop-blur-md', 'shadow-md', 'shadow-gold/5');
+            }
+        });
+
+        // Lógica de Pasarela de Pago
+        const modal = document.getElementById('payment-modal');
+        const contentDiv = document.getElementById('payment-content');
+        const processingDiv = document.getElementById('payment-processing');
+        const successDiv = document.getElementById('payment-success');
+        const productNameEl = document.getElementById('modal-product-name');
+        const productPriceEl = document.getElementById('modal-product-price');
+
+        function openPaymentModal(name, price) {
+            // Formatear precio
+            const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
+            
+            productNameEl.textContent = name;
+            productPriceEl.textContent = formattedPrice;
+            
+            // Reset estados
+            contentDiv.classList.remove('hidden');
+            processingDiv.classList.add('hidden');
+            processingDiv.classList.remove('flex');
+            successDiv.classList.add('hidden');
+            successDiv.classList.remove('flex');
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll
+        }
+
+        function closePaymentModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+            document.getElementById('checkout-form').reset();
+        }
+
+        function processPayment(e) {
+            e.preventDefault();
+            
+            // Mostrar spinner
+            contentDiv.classList.add('hidden');
+            processingDiv.classList.remove('hidden');
+            processingDiv.classList.add('flex');
+            
+            // Simular petición al servidor (3 segundos)
+            setTimeout(() => {
+                processingDiv.classList.add('hidden');
+                processingDiv.classList.remove('flex');
+                
+                successDiv.classList.remove('hidden');
+                successDiv.classList.add('flex');
+            }, 2500);
+        }
     </script>
 </body>
 </html>
