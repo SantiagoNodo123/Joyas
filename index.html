@@ -119,24 +119,86 @@
     </nav>
 
     <!-- 1. Hero Section -->
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+    <header class="relative min-h-screen flex items-center pt-24 overflow-hidden" id="hero">
         <div class="absolute inset-0 z-0">
             <!-- Imagen Nicho Joyas -->
-            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2000&auto=format&fit=crop" alt="Alta Joyería Hero" class="w-full h-full object-cover opacity-50">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-obsidian"></div>
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2000&auto=format&fit=crop" alt="Alta Joyería Hero" class="w-full h-full object-cover opacity-30 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/85 to-obsidian"></div>
         </div>
-        <div class="z-10 text-center px-4" data-aos="zoom-out" data-aos-duration="2000">
-            <h1 class="font-serif text-5xl md:text-8xl font-bold mb-6 tracking-wide text-gradient-gold">Lujo Inmortal</h1>
-            <p class="text-lg md:text-xl font-light mb-12 tracking-widest uppercase text-silver">Forjando la eternidad en oro y plata</p>
-            <a href="#anillos" class="shimmer-btn-gold px-12 py-4 uppercase tracking-widest text-sm font-bold shadow-lg shadow-gold/20 inline-block">
-                Explorar Obras Maestras
-            </a>
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full z-10 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left: Texts -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <h1 class="hero-title font-serif text-5xl md:text-8xl font-bold mb-6 tracking-wide text-gradient-gold opacity-0">Lujo Inmortal</h1>
+                    <p class="hero-subtitle text-lg md:text-xl font-light mb-12 tracking-widest uppercase text-silver opacity-0">Forjando la eternidad en oro y plata</p>
+                    <div class="hero-cta opacity-0">
+                        <a href="#anillos" class="shimmer-btn-gold px-12 py-4 uppercase tracking-widest text-sm font-bold shadow-lg shadow-gold/20 inline-block">
+                            Explorar Obras Maestras
+                        </a>
+                    </div>
+                </div>
+                <!-- Right: Glowing Jewel -->
+                <div class="lg:col-span-5 flex justify-center items-center relative py-12 lg:py-0">
+                    <!-- Glowing Aura behind Diamond -->
+                    <div class="diamond-glow absolute w-72 h-72 rounded-full bg-gold/15 filter blur-3xl opacity-60"></div>
+                    <!-- Sparkling Particles Container -->
+                    <div class="absolute inset-0 pointer-events-none overflow-visible" id="sparkles-container"></div>
+                    
+                    <!-- SVG Diamond -->
+                    <div class="relative w-72 h-72 md:w-80 md:h-80 select-none z-10 cursor-pointer" id="interactive-diamond">
+                        <svg viewBox="0 0 300 300" class="w-full h-full drop-shadow-[0_0_25px_rgba(212,175,55,0.25)]">
+                            <defs>
+                                <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#bf953f" />
+                                    <stop offset="50%" stop-color="#fcf6ba" />
+                                    <stop offset="100%" stop-color="#b38728" />
+                                </linearGradient>
+                                <linearGradient id="goldGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#fbf5b7" />
+                                    <stop offset="50%" stop-color="#aa771c" />
+                                    <stop offset="100%" stop-color="#bf953f" />
+                                </linearGradient>
+                                <linearGradient id="goldGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#b38728" />
+                                    <stop offset="100%" stop-color="#fcf6ba" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Crown Facets -->
+                            <!-- Table -->
+                            <polygon points="110,70 190,70 210,100 150,110 90,100" fill="url(#goldGrad1)" class="diamond-facet transition-all duration-300 opacity-95 stroke-obsidian/30 stroke-1" data-brightness="1.0" />
+                            <!-- Top-Left -->
+                            <polygon points="110,70 90,100 150,110" fill="url(#goldGrad2)" class="diamond-facet transition-all duration-300 opacity-80 stroke-obsidian/30 stroke-1" data-brightness="0.8" />
+                            <!-- Top-Right -->
+                            <polygon points="190,70 210,100 150,110" fill="url(#goldGrad3)" class="diamond-facet transition-all duration-300 opacity-95 stroke-obsidian/30 stroke-1" data-brightness="0.95" />
+                            <!-- Side-Left -->
+                            <polygon points="90,100 60,130 95,130" fill="url(#goldGrad2)" class="diamond-facet transition-all duration-300 opacity-75 stroke-obsidian/30 stroke-1" data-brightness="0.75" />
+                            <!-- Side-Right -->
+                            <polygon points="210,100 240,130 205,130" fill="url(#goldGrad3)" class="diamond-facet transition-all duration-300 opacity-80 stroke-obsidian/30 stroke-1" data-brightness="0.85" />
+                            <!-- Mid-Left Quad -->
+                            <polygon points="90,100 95,130 150,135 150,110" fill="url(#goldGrad1)" class="diamond-facet transition-all duration-300 opacity-85 stroke-obsidian/30 stroke-1" data-brightness="0.9" />
+                            <!-- Mid-Right Quad -->
+                            <polygon points="210,100 205,130 150,135 150,110" fill="url(#goldGrad2)" class="diamond-facet transition-all duration-300 opacity-90 stroke-obsidian/30 stroke-1" data-brightness="0.85" />
+                            
+                            <!-- Pavilion Facets (Bottom) -->
+                            <!-- Outer Left -->
+                            <polygon points="60,130 150,250 95,130" fill="url(#goldGrad3)" class="diamond-facet transition-all duration-300 opacity-70 stroke-obsidian/30 stroke-1" data-brightness="0.7" />
+                            <!-- Mid Left -->
+                            <polygon points="95,130 150,250 150,135" fill="url(#goldGrad1)" class="diamond-facet transition-all duration-300 opacity-85 stroke-obsidian/30 stroke-1" data-brightness="0.9" />
+                            <!-- Mid Right -->
+                            <polygon points="205,130 150,250 150,135" fill="url(#goldGrad2)" class="diamond-facet transition-all duration-300 opacity-80 stroke-obsidian/30 stroke-1" data-brightness="0.85" />
+                            <!-- Outer Right -->
+                            <polygon points="240,130 150,250 205,130" fill="url(#goldGrad3)" class="diamond-facet transition-all duration-300 opacity-75 stroke-obsidian/30 stroke-1" data-brightness="0.75" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- 2. Sección: Anillos de Compromiso (Oro) -->
     <section id="anillos" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+        <div class="flex flex-col items-center mb-16 rings-header">
             <span class="text-gold uppercase tracking-widest text-sm mb-2">Edición Limitada</span>
             <h2 class="font-serif text-4xl md:text-5xl mb-4 text-pearl">Anillos de Compromiso</h2>
             <div class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent"></div>
@@ -144,7 +206,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Productos -->
-            <div class="group" data-aos="fade-up" data-aos-delay="100">
+            <div class="group ring-card">
                 <div class="img-hover-zoom mb-6 relative">
                     <img src="https://images.unsplash.com/photo-1605100804763-247f66126e28?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
                     <button onclick="openPaymentModal('Anillo Diamante Princesa', 12500)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
@@ -154,7 +216,7 @@
                 <p class="text-pearl tracking-wider">$12,500</p>
             </div>
             
-            <div class="group" data-aos="fade-up" data-aos-delay="200">
+            <div class="group ring-card">
                 <div class="img-hover-zoom mb-6 relative">
                     <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
                     <button onclick="openPaymentModal('Anillo Solitario Imperial', 18200)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
@@ -164,7 +226,7 @@
                 <p class="text-pearl tracking-wider">$18,200</p>
             </div>
             
-            <div class="group" data-aos="fade-up" data-aos-delay="300">
+            <div class="group ring-card">
                 <div class="img-hover-zoom mb-6 relative">
                     <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
                     <button onclick="openPaymentModal('Anillo Halo de Esmeralda', 9400)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
@@ -174,7 +236,7 @@
                 <p class="text-pearl tracking-wider">$9,400</p>
             </div>
             
-            <div class="group" data-aos="fade-up" data-aos-delay="400">
+            <div class="group ring-card">
                 <div class="img-hover-zoom mb-6 relative">
                     <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600&auto=format&fit=crop" class="w-full h-96 object-cover">
                     <button onclick="openPaymentModal('Anillo Rubí Eternidad', 15000)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-gold px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Comprar Ahora</button>
@@ -187,9 +249,10 @@
     </section>
 
     <!-- 3. Sección: Colección Plata y Platino -->
+    <!-- 3. Sección: Colección Plata y Platino -->
     <section id="plata" class="bg-obsidianLight py-24 border-y border-neutral-900">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
-            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+            <div class="flex flex-col items-center mb-16 silver-header">
                 <span class="text-silver uppercase tracking-widest text-sm mb-2">Pureza Absoluta</span>
                 <h2 class="font-serif text-4xl md:text-5xl mb-4 text-gradient-silver">Colección Plata y Platino</h2>
                 <div class="w-24 h-px bg-gradient-to-r from-transparent via-silver to-transparent"></div>
@@ -197,7 +260,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <!-- Productos Plata -->
-                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                <div class="group silver-card">
                     <div class="img-hover-zoom mb-6 relative">
                         <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=600&auto=format&fit=crop" class="w-full h-[28rem] object-cover grayscale hover:grayscale-0 transition-all duration-700">
                         <button onclick="openPaymentModal('Gargantilla de Platino', 6800)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-silver px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Adquirir</button>
@@ -205,7 +268,7 @@
                     <h3 class="font-serif text-xl mb-1 text-silver">Gargantilla de Platino</h3>
                     <p class="text-pearl tracking-wider">$6,800</p>
                 </div>
-                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                <div class="group silver-card">
                     <div class="img-hover-zoom mb-6 relative">
                         <img src="https://images.unsplash.com/photo-1620656798579-1984d9e87df6?q=80&w=600&auto=format&fit=crop" class="w-full h-[28rem] object-cover grayscale hover:grayscale-0 transition-all duration-700">
                         <button onclick="openPaymentModal('Brazalete Plata Ley 925', 3200)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-silver px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Adquirir</button>
@@ -213,7 +276,7 @@
                     <h3 class="font-serif text-xl mb-1 text-silver">Brazalete Plata Ley 925</h3>
                     <p class="text-pearl tracking-wider">$3,200</p>
                 </div>
-                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                <div class="group silver-card">
                     <div class="img-hover-zoom mb-6 relative">
                         <img src="https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?q=80&w=600&auto=format&fit=crop" class="w-full h-[28rem] object-cover grayscale hover:grayscale-0 transition-all duration-700">
                         <button onclick="openPaymentModal('Pendientes Gota de Zafiro', 5100)" class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shimmer-btn-silver px-6 py-3 text-xs uppercase tracking-widest font-bold whitespace-nowrap">Adquirir</button>
@@ -229,7 +292,7 @@
     <section id="relojes" class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative overflow-hidden">
         <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-gold/5 to-transparent z-0 pointer-events-none"></div>
         <div class="flex flex-col md:flex-row items-center gap-16 relative z-10">
-            <div class="md:w-1/2" data-aos="fade-right">
+            <div class="md:w-1/2 watch-text-col">
                 <span class="text-gold uppercase tracking-widest text-sm mb-4 block">Precisión Suiza</span>
                 <h2 class="font-serif text-4xl md:text-6xl mb-6 text-pearl leading-tight">El Tiempo<br><span class="text-gradient-gold">Hecho Arte</span></h2>
                 <p class="text-silverDark font-light mb-10 text-lg">Descubra nuestra selección de relojería con complicaciones maestras, esferas de meteorito y tourbillons en cajas de oro rosa de 18 quilates.</p>
@@ -252,7 +315,7 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2" data-aos="fade-left">
+            <div class="md:w-1/2 watch-img-col">
                 <img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=800&auto=format&fit=crop" class="w-full h-auto shadow-2xl shadow-gold/10 rounded-sm">
             </div>
         </div>
@@ -327,10 +390,15 @@
         </div>
     </div>
 
-    <!-- Scripts (AOS y Lógica del Modal) -->
+    <!-- Scripts (GSAP, AOS y Lógica de Interacción) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-        // Inicializar animaciones de scroll
+        // Registrar ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Inicializar AOS
         AOS.init({
             duration: 1200,
             easing: 'ease-out-cubic',
@@ -357,13 +425,10 @@
         const productPriceEl = document.getElementById('modal-product-price');
 
         function openPaymentModal(name, price) {
-            // Formatear precio
             const formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
-            
             productNameEl.textContent = name;
             productPriceEl.textContent = formattedPrice;
             
-            // Reset estados
             contentDiv.classList.remove('hidden');
             processingDiv.classList.add('hidden');
             processingDiv.classList.remove('flex');
@@ -371,32 +436,220 @@
             successDiv.classList.remove('flex');
             
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevenir scroll
+            document.body.style.overflow = 'hidden';
         }
 
         function closePaymentModal() {
             modal.classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Restaurar scroll
+            document.body.style.overflow = 'auto';
             document.getElementById('checkout-form').reset();
         }
 
         function processPayment(e) {
             e.preventDefault();
-            
-            // Mostrar spinner
             contentDiv.classList.add('hidden');
             processingDiv.classList.remove('hidden');
             processingDiv.classList.add('flex');
             
-            // Simular petición al servidor (3 segundos)
             setTimeout(() => {
                 processingDiv.classList.add('hidden');
                 processingDiv.classList.remove('flex');
-                
                 successDiv.classList.remove('hidden');
                 successDiv.classList.add('flex');
             }, 2500);
         }
+
+        // --- ANIMACIONES PREMIUM GSAP ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Animación de entrada del Hero (Texts)
+            const tlHero = gsap.timeline();
+            tlHero.to('.hero-title', {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: 'power4.out',
+                startAt: { y: 40 }
+            })
+            .to('.hero-subtitle', {
+                opacity: 1,
+                y: 0,
+                duration: 1.0,
+                ease: 'power3.out',
+                startAt: { y: 25 }
+            }, '-=0.8')
+            .to('.hero-cta', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                startAt: { y: 20 }
+            }, '-=0.6')
+            .to('#interactive-diamond', {
+                opacity: 1,
+                scale: 1,
+                duration: 1.5,
+                ease: 'elastic.out(1, 0.75)',
+                startAt: { scale: 0.6, opacity: 0 }
+            }, '-=1.2');
+
+            // 2. Animación de flotación infinita del diamante
+            gsap.to('#interactive-diamond', {
+                y: -12,
+                duration: 3,
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1
+            });
+            gsap.to('.diamond-glow', {
+                scale: 1.15,
+                opacity: 0.75,
+                duration: 3,
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1
+            });
+
+            // 3. Destellos interactivos al mover el mouse en el diamante
+            const diamond = document.getElementById('interactive-diamond');
+            const facets = document.querySelectorAll('.diamond-facet');
+            const heroSection = document.getElementById('hero');
+
+            heroSection.addEventListener('mousemove', (e) => {
+                const rect = heroSection.getBoundingClientRect();
+                const mouseX = (e.clientX - rect.left) / rect.width;
+                const mouseY = (e.clientY - rect.top) / rect.height;
+
+                facets.forEach((facet, index) => {
+                    const baseBrightness = parseFloat(facet.getAttribute('data-brightness'));
+                    const wave = Math.sin((mouseX * 4 + mouseY * 4 + index * 0.5) * Math.PI);
+                    const targetOpacity = baseBrightness + (wave * 0.15);
+                    
+                    gsap.to(facet, {
+                        opacity: Math.max(0.4, Math.min(1.0, targetOpacity)),
+                        duration: 0.4,
+                        overwrite: 'auto'
+                    });
+                });
+
+                // Mover ligeramente el aura del resplandor
+                const auraX = (mouseX - 0.5) * 40;
+                const auraY = (mouseY - 0.5) * 40;
+                gsap.to('.diamond-glow', {
+                    x: auraX,
+                    y: auraY,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    overwrite: 'auto'
+                });
+            });
+
+            heroSection.addEventListener('mouseleave', () => {
+                facets.forEach((facet) => {
+                    const baseBrightness = parseFloat(facet.getAttribute('data-brightness'));
+                    gsap.to(facet, {
+                        opacity: baseBrightness,
+                        duration: 0.8,
+                        overwrite: 'auto'
+                    });
+                });
+                gsap.to('.diamond-glow', {
+                    x: 0,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    overwrite: 'auto'
+                });
+            });
+
+            // 4. Generación dinámica de partículas brillantes (Sparkles)
+            const sparklesContainer = document.getElementById('sparkles-container');
+            function createSparkle() {
+                if (!sparklesContainer) return;
+                const sparkle = document.createElement('div');
+                sparkle.className = 'absolute bg-white rounded-full pointer-events-none';
+                
+                const size = Math.random() * 4 + 2;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.boxShadow = '0 0 10px #fcf6ba, 0 0 20px #d4af37';
+                sparkle.style.backgroundColor = '#fff';
+                
+                const containerRect = sparklesContainer.getBoundingClientRect();
+                const startX = containerRect.width / 2 + (Math.random() - 0.5) * 160;
+                const startY = containerRect.height / 2 + (Math.random() - 0.5) * 160;
+                
+                sparkle.style.left = `${startX}px`;
+                sparkle.style.top = `${startY}px`;
+                
+                sparklesContainer.appendChild(sparkle);
+                
+                gsap.to(sparkle, {
+                    x: (Math.random() - 0.5) * 80,
+                    y: -100 - Math.random() * 50,
+                    opacity: 0,
+                    scale: 0.2,
+                    duration: 2 + Math.random() * 1.5,
+                    ease: 'power1.out',
+                    onComplete: () => {
+                        sparkle.remove();
+                    }
+                });
+            }
+
+            setInterval(createSparkle, 250);
+
+            // 5. ScrollTrigger: Revelado Staggered de los Anillos
+            gsap.from('#anillos .ring-card', {
+                scrollTrigger: {
+                    trigger: '#anillos',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                y: 80,
+                opacity: 0,
+                duration: 1.0,
+                stagger: 0.15,
+                ease: 'power3.out'
+            });
+
+            // 6. ScrollTrigger: Revelado Staggered de Colección Plata
+            gsap.from('#plata .silver-card', {
+                scrollTrigger: {
+                    trigger: '#plata',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                y: 80,
+                opacity: 0,
+                duration: 1.0,
+                stagger: 0.15,
+                ease: 'power3.out'
+            });
+
+            // 7. ScrollTrigger: Relojería (Parallax y desplazamiento)
+            gsap.from('#relojes .watch-text-col', {
+                scrollTrigger: {
+                    trigger: '#relojes',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                x: -70,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+            gsap.from('#relojes .watch-img-col', {
+                scrollTrigger: {
+                    trigger: '#relojes',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                x: 70,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+        });
     </script>
 </body>
 </html>
