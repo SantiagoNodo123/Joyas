@@ -321,6 +321,154 @@
         </div>
     </section>
 
+    <!-- 5. Sección: Asesoría y Contacto -->
+    <section id="contacto" class="py-24 bg-obsidian border-t border-neutral-900 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute left-0 bottom-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col items-center mb-16" data-aos="fade-up">
+                <span class="text-gold uppercase tracking-widest text-sm mb-2">Contacto Privado</span>
+                <h2 class="font-serif text-4xl md:text-5xl mb-4 text-pearl">Asesoría Exclusiva</h2>
+                <div class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <!-- Info Column -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <h3 class="font-serif text-2xl text-gold">Agendar una Consulta VIP</h3>
+                    <p class="text-silverDark font-light leading-relaxed">
+                        Nuestros asesores de alta joyería están disponibles para guiarle de forma personalizada en la selección de diamantes, metales preciosos y diseños personalizados. Ofrecemos citas virtuales y presenciales en nuestras boutiques privadas.
+                    </p>
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4 text-silver">
+                            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Rue de la Paix 14, París, Francia</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-silver">
+                            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>+33 1 42 68 53 00 (Línea VIP)</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-silver">
+                            <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span>boutique@lorealjouaillerie.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Column -->
+                <div class="bg-obsidianLight border border-gold/20 p-8 rounded-sm" data-aos="fade-left" id="consultation-form-container">
+                    <form id="consultation-form" onsubmit="submitConsultation(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">Nombre Completo</label>
+                                <input type="text" required class="w-full bg-transparent border border-neutral-850 py-3 px-4 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-neutral-700" placeholder="Su nombre">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">Correo Electrónico VIP</label>
+                                <input type="email" required class="w-full bg-transparent border border-neutral-850 py-3 px-4 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-neutral-700" placeholder="ejemplo@correo.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">Colección de Interés</label>
+                            <select required class="w-full bg-obsidian border border-neutral-850 py-3 px-4 text-silver focus:outline-none focus:border-gold transition-colors font-light appearance-none">
+                                <option value="" disabled selected>Seleccione una colección...</option>
+                                <option value="anillos">Anillos de Compromiso</option>
+                                <option value="plata">Colección Plata y Platino</option>
+                                <option value="relojes">Alta Relojería</option>
+                                <option value="personalizado">Diseño Personalizado a Medida</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-silverDark mb-2">Preferencia de Contacto / Detalles</label>
+                            <textarea rows="4" required class="w-full bg-transparent border border-neutral-850 py-3 px-4 text-pearl focus:outline-none focus:border-gold transition-colors font-light placeholder-neutral-700 resize-none" placeholder="Describa su solicitud o preferencia de horario..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full shimmer-btn-gold py-4 text-sm uppercase tracking-widest font-bold cursor-pointer">
+                            Solicitar Asesoría VIP
+                        </button>
+                    </form>
+                    
+                    <div id="consultation-success" class="hidden flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold flex items-center justify-center mb-6 animate-pulse">
+                            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h4 class="font-serif text-2xl text-gold mb-2">Solicitud Recibida</h4>
+                        <p class="text-silverDark text-sm font-light">Un asesor VIP se pondrá en contacto con usted en las próximas 24 horas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-obsidian border-t border-neutral-900 py-12 px-6 text-center text-silverDark text-xs uppercase tracking-widest">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-serif text-lg tracking-widest text-gradient-gold font-bold">L'ORÉAL JOUAILLERIE</div>
+            <div>&copy; 2026 L'ORÉAL JOUAILLERIE. Todos los derechos reservados.</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-gold transition-colors">Boutiques</a>
+                <a href="#" class="hover:text-gold transition-colors">Privacidad</a>
+                <a href="#" class="hover:text-gold transition-colors">Términos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Oracle Floating Assistant -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Chat Window -->
+        <div id="oracle-chat" class="w-[340px] md:w-96 h-[500px] bg-obsidian/95 backdrop-blur-md border border-gold/30 rounded-2xl shadow-2xl flex-col overflow-hidden mb-4 hidden transform translate-y-4 opacity-0 transition-all duration-300">
+            <!-- Header -->
+            <div class="bg-obsidianLight px-6 py-4 border-b border-gold/20 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full border border-gold/30 bg-gold/10 flex items-center justify-center relative">
+                        <div class="w-2 h-2 bg-gold rounded-full animate-ping absolute"></div>
+                        <svg class="w-4.5 h-4.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-serif text-sm text-gold font-bold tracking-wider">El Oráculo de L'Oréal</h4>
+                        <span class="text-[10px] text-silverDark uppercase tracking-widest font-light block">Asistente Virtual VIP</span>
+                    </div>
+                </div>
+                <button onclick="toggleOracleChat()" class="text-silverDark hover:text-white transition-colors cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div class="flex-1 p-6 overflow-y-auto space-y-4 text-sm font-light text-silver font-sans" id="oracle-messages">
+                <!-- Welcome Message -->
+                <div class="flex items-start gap-3">
+                    <div class="w-7 h-7 rounded-full border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
+                        <span class="text-[10px] text-gold font-serif">O</span>
+                    </div>
+                    <div class="bg-neutral-900/60 border border-neutral-800 p-3 rounded-2xl rounded-tl-none max-w-[80%] text-left">
+                        <p class="leading-relaxed">Bienvenido a la boutique virtual. Soy el **Oráculo**, su asistente personal de alta joyería. ¿Cómo puedo guiarle en su búsqueda de elegancia hoy?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Prompts -->
+            <div class="px-6 py-3 border-t border-gold/10 bg-obsidianLight/40 flex flex-wrap gap-2" id="oracle-prompts">
+                <button onclick="askOracle('Recomiéndame un anillo')" class="text-[10px] uppercase tracking-widest bg-obsidianLight border border-gold/25 hover:border-gold px-3 py-1.5 text-gold transition-all duration-300 font-sans cursor-pointer">Anillo de Compromiso</button>
+                <button onclick="askOracle('Ver Alta Relojería')" class="text-[10px] uppercase tracking-widest bg-obsidianLight border border-gold/25 hover:border-gold px-3 py-1.5 text-gold transition-all duration-300 font-sans cursor-pointer">Relojería Fina</button>
+                <button onclick="askOracle('Plata vs Platino')" class="text-[10px] uppercase tracking-widest bg-obsidianLight border border-gold/25 hover:border-gold px-3 py-1.5 text-gold transition-all duration-300 font-sans cursor-pointer">Plata vs Platino</button>
+            </div>
+            
+            <!-- Input Area -->
+            <form onsubmit="sendOracleMessage(event)" class="p-4 border-t border-gold/20 bg-obsidianLight flex gap-3">
+                <input type="text" id="oracle-input" required class="flex-1 bg-obsidian border border-neutral-850 focus:outline-none focus:border-gold rounded-full px-4 py-2.5 text-xs text-pearl placeholder-neutral-600 font-light" placeholder="Escriba su consulta aquí...">
+                <button type="submit" class="w-9 h-9 rounded-full bg-gold hover:bg-goldDark text-obsidian flex items-center justify-center transition-colors cursor-pointer">
+                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- Float Button -->
+        <button onclick="toggleOracleChat()" class="relative flex items-center justify-center w-14 h-14 rounded-full bg-obsidian border border-gold/30 hover:border-gold transition-all duration-300 shadow-2xl hover:scale-105 group cursor-pointer z-50">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold/10 opacity-75"></span>
+            <!-- Sparkles orbiting -->
+            <svg class="w-7 h-7 text-gold group-hover:rotate-12 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+        </button>
+    </div>
+
     <!-- Modal de Pasarela de Pago Funcional -->
     <div id="payment-modal" class="fixed inset-0 z-[100] bg-black/80 hidden flex items-center justify-center p-4">
         <div class="bg-obsidian border border-gold/30 w-full max-w-md relative overflow-hidden" data-aos="zoom-in" data-aos-duration="400">
@@ -704,6 +852,147 @@
                 ease: 'power3.out'
             });
         });
+
+        // Lógica del Oráculo Asistente
+        let chatOpen = false;
+
+        function toggleOracleChat() {
+            const chatWindow = document.getElementById('oracle-chat');
+            chatOpen = !chatOpen;
+            
+            if (chatOpen) {
+                chatWindow.classList.remove('hidden');
+                chatWindow.classList.add('flex');
+                setTimeout(() => {
+                    chatWindow.classList.remove('translate-y-4', 'opacity-0');
+                }, 50);
+            } else {
+                chatWindow.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                    chatWindow.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        const oracleMessages = document.getElementById('oracle-messages');
+        const oracleInput = document.getElementById('oracle-input');
+
+        function appendMessage(sender, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex items-start gap-3 ${sender === 'user' ? 'justify-end' : ''}`;
+            
+            const avatarHtml = sender === 'oracle' 
+                ? `<div class="w-7 h-7 rounded-full border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
+                       <span class="text-[10px] text-gold font-serif">O</span>
+                   </div>`
+                : '';
+                
+            const contentClass = sender === 'oracle'
+                ? 'bg-neutral-900/60 border border-neutral-800 p-3 rounded-2xl rounded-tl-none max-w-[80%] text-left'
+                : 'bg-gold/10 border border-gold/30 p-3 rounded-2xl rounded-tr-none max-w-[80%] text-left text-gold';
+                
+            messageDiv.innerHTML = `
+                ${avatarHtml}
+                <div class="${contentClass}">
+                    <p class="leading-relaxed">${text}</p>
+                </div>
+            `;
+            
+            oracleMessages.appendChild(messageDiv);
+            oracleMessages.scrollTop = oracleMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const indicatorDiv = document.createElement('div');
+            indicatorDiv.id = 'typing-indicator';
+            indicatorDiv.className = 'flex items-start gap-3';
+            indicatorDiv.innerHTML = `
+                <div class="w-7 h-7 rounded-full border border-gold/30 bg-gold/10 flex items-center justify-center flex-shrink-0">
+                    <span class="text-[10px] text-gold font-serif">O</span>
+                </div>
+                <div class="bg-neutral-900/60 border border-neutral-800 p-3 rounded-2xl rounded-tl-none max-w-[80%] flex items-center gap-1.5 py-4">
+                    <span class="w-1.5 h-1.5 bg-gold rounded-full animate-bounce"></span>
+                    <span class="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                    <span class="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+                </div>
+            `;
+            oracleMessages.appendChild(indicatorDiv);
+            oracleMessages.scrollTop = oracleMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        function getOracleReply(input) {
+            const text = input.toLowerCase();
+            if (text.includes('anillo') || text.includes('compromiso') || text.includes('novia') || text.includes('boda') || text.includes('casar')) {
+                return 'Para un momento inolvidable, le recomiendo nuestro **Diamante Corte Princesa** de 18 Quilates, o el majestuoso **Solitario Imperial** de oro blanco. ¿Desea que le agende una asesoría para personalizar la talla?';
+            }
+            if (text.includes('reloj') || text.includes('tiempo') || text.includes('tourbillon') || text.includes('cronógrafo') || text.includes('cronografo')) {
+                return 'Nuestra colección de Alta Relojería cuenta con el **Tourbillon Esqueleto** ($85,000) de oro rosa y el **Cronógrafo** ($42,000) con precisión suiza. Piezas que trascienden el tiempo. ¿Desea ver detalles técnicos?';
+            }
+            if (text.includes('plata') || text.includes('platino') || text.includes('diferencia')) {
+                return 'El **platino** destaca por su densidad, brillo inalterable y pureza, perfecto para nuestra *Gargantilla de Platino* ($6,800). La **plata de ley 925** es ligera y elegante, como nuestro *Brazalete* ($3,200).';
+            }
+            if (text.includes('esmeralda') || text.includes('rubí') || text.includes('rubi') || text.includes('zafiro')) {
+                return 'Trabajamos con gemas seleccionadas: esmeraldas colombianas de brillo intenso (*Halo de Esmeralda*), rubíes birmanos de sangre de paloma (*Rubí Eternidad*) y zafiros de gota (*Pendientes Gota de Zafiro*).';
+            }
+            if (text.includes('precio') || text.includes('costo') || text.includes('comprar') || text.includes('adquirir') || text.includes('valen') || text.includes('cuestan')) {
+                return 'Nuestras piezas exclusivas van desde $3,200 (Brazalete Plata) hasta $85,000 (Reloj Tourbillon). Todas incluyen certificado de autenticidad y envío premium. Puede comprarlas directamente en la página con el botón **Comprar Ahora**.';
+            }
+            if (text.includes('hola') || text.includes('buenos') || text.includes('saludos') || text.includes('asesor')) {
+                return 'Saludos distinguido cliente. Estoy aquí para resolver sus dudas sobre materiales (oro, platino, gemas) o sugerirle la obra maestra ideal. ¿Tiene alguna colección en mente?';
+            }
+            return 'Entiendo. En L\'Oréal Jouaillerie cada pieza es única. Si busca algo a medida, le recomiendo rellenar nuestro formulario de **Asesoría VIP** al final de la página para que un especialista le atienda directamente.';
+        }
+
+        function sendOracleMessage(e) {
+            if (e) e.preventDefault();
+            const query = oracleInput.value.trim();
+            if (!query) return;
+            
+            appendMessage('user', query);
+            oracleInput.value = '';
+            
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                const reply = getOracleReply(query);
+                appendMessage('oracle', reply);
+            }, 1200);
+        }
+
+        function askOracle(question) {
+            appendMessage('user', question);
+            showTypingIndicator();
+            setTimeout(() => {
+                removeTypingIndicator();
+                const reply = getOracleReply(question);
+                appendMessage('oracle', reply);
+            }, 1000);
+        }
+
+        // Lógica del Formulario de Asesoría VIP
+        function submitConsultation(e) {
+            e.preventDefault();
+            const form = document.getElementById('consultation-form');
+            const successDiv = document.getElementById('consultation-success');
+            
+            form.classList.add('hidden');
+            successDiv.classList.remove('hidden');
+            successDiv.classList.add('flex');
+            
+            setTimeout(() => {
+                form.reset();
+                successDiv.classList.add('hidden');
+                successDiv.classList.remove('flex');
+                form.classList.remove('hidden');
+            }, 5000);
+        }
     </script>
 </body>
 </html>
